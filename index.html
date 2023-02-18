@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>html,body{background-color:rgb(11,17,32);background:linear-gradient(-7deg, rgba(11,17,32,.975), rgba(20,23,46,.75), rgba(11,17,32,.927) 100%);background-repeat: no-repeat;min-height:100%;}</style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/theme.css" />
+    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+    <title>Game</title>
+</head>
+<body>
+    <div class="paralax-wrapper">
+        <div style="
+            position: absolute;
+            inset: 0;
+            margin: 0 0 auto;
+            padding: 0;
+            display: flex;
+            width: 100%;
+            height: 64px;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1;
+        ">
+            <div id="player0" style="
+                position: relative;
+                flex: 1 1;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: stretch;
+            ">
+                <progress min="0" max="100" value="0" id="player0-health" style="
+                    flex: 1 1 0px;
+                    transform: rotate(180deg);
+                "></progress>
+            </div>
+            <div style="
+                margin: 0.5em 0;
+                padding: 0 1em;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            ">
+                <span id="timer" style="
+                    color: white;
+                ">
+                    45
+                </span>
+            </div>
+            <div id="enemy0" style="
+                position: relative;
+                flex: 1 1;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: stretch;
+            ">
+                <progress min="0" max="100" value="0" id="enemy0-health" style="
+                    flex: 1 1 0px;
+                "></progress>
+            </div>
+        </div>
+        <canvas id="canvas-0"></canvas>
+    </div>
+    <script type="module" src="./scripts/main.js"></script>
+</body>
+</html>
