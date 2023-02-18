@@ -498,8 +498,8 @@
                         mw: 64,
                         h: 25
                     },
-                    speed: 12.5,
-                    damage: 4.8,
+                    speed: 60.5,
+                    damage: 6.1,
                     testColor: `#33ae80`
                 },
                 full: {
@@ -513,7 +513,7 @@
                         h: 37.5
                     },
                     speed: 6.75,
-                    damage: 9,
+                    damage: 12,
                     testColor: `#994123`
                 }
             },
