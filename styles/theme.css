@@ -69,3 +69,34 @@ div#game-over {
     visibility: hidden;
     color: rgba(212,221,241,.99);
 }
+
+div#controls {
+    position: relative;
+    inset: 0;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    color: rgba(212,221,241,.75);
+}
+
+.controls p span {
+    color: yellowgreen;
+}
+
+#player0-controls {
+    text-align: left;
+}
+
+#enemy0-controls {
+    text-align: right;
+}

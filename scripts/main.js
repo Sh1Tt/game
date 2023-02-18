@@ -24,6 +24,40 @@
     stdout.player = document.body.querySelector(`#player0-health`);
     stdout.enemy = document.body.querySelector(`#enemy0-health`);
     stdout.gameover = document.body.querySelector(`#game-over`);
+    stdout.buttons = document.body.querySelector(`#controls`);
+
+    stdout.controls = {
+        player0: {
+            up: document.body.querySelector(`#player0-up`),
+            down: document.body.querySelector(`#player0-down`),
+            left: document.body.querySelector(`#player0-left`),
+            right: document.body.querySelector(`#player0-right`),
+            attack: document.body.querySelector(`#player0-attack`),
+            block: document.body.querySelector(`#player0-block`)
+        },
+        enemy0: {
+            up: document.body.querySelector(`#enemy0-up`),
+            down: document.body.querySelector(`#enemy0-down`),
+            left: document.body.querySelector(`#enemy0-left`),
+            right: document.body.querySelector(`#enemy0-right`),
+            attack: document.body.querySelector(`#enemy0-attack`),
+            block: document.body.querySelector(`#enemy0-block`)
+        }
+    };
+
+    stdout.controls.player0.up.innerText = controls.player.up;
+    stdout.controls.player0.down.innerText = controls.player.down;
+    stdout.controls.player0.left.innerText = controls.player.left;
+    stdout.controls.player0.right.innerText = controls.player.right;
+    stdout.controls.player0.attack.innerText = controls.player.attack;
+    stdout.controls.player0.block.innerText = controls.player.block;
+
+    stdout.controls.enemy0.up.innerText = controls.enemy.up;
+    stdout.controls.enemy0.down.innerText = controls.enemy.down;
+    stdout.controls.enemy0.left.innerText = controls.enemy.left;
+    stdout.controls.enemy0.right.innerText = controls.enemy.right;
+    stdout.controls.enemy0.attack.innerText = controls.enemy.attack;
+    stdout.controls.enemy0.block.innerText = controls.enemy.block;
 
     const canvas = document.body.querySelector(`#canvas-0`);
     const ctx = canvas.getContext(`2d`);
@@ -64,6 +98,7 @@
         stdout.gamebar.style.width = `${dim.w}px`;
         stdout.gameover.style.width = `${dim.w}px`;
         stdout.gameover.style.height = `${dim.h}px`;
+        stdout.buttons.style.width = `${dim.w}px`;
     };
     const setBackground = props => {
         ctx.fillRect(props.x, props.y, props.w, props.h);
