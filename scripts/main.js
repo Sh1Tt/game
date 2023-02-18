@@ -13,11 +13,17 @@
             down: `ArrowDown`,
             left: `ArrowLeft`,
             right: `ArrowRight`,
-            attack: `.`,
-            block: `/`
+            attack: `2`,
+            block: `3`
         }
     };
 
+    const stdout = {};
+    stdout.timer = document.body.querySelector(`#timer`);
+    stdout.gamebar = document.body.querySelector(`#bar`);
+    stdout.player = document.body.querySelector(`#player0-health`);
+    stdout.enemy = document.body.querySelector(`#enemy0-health`);
+    stdout.gameover = document.body.querySelector(`#game-over`);
 
     const canvas = document.body.querySelector(`#canvas-0`);
     const ctx = canvas.getContext(`2d`);
@@ -55,6 +61,9 @@
                 : window.innerHeight);
         target.width = dim.w;
         target.height = dim.h;
+        stdout.gamebar.style.width = `${dim.w}px`;
+        stdout.gameover.style.width = `${dim.w}px`;
+        stdout.gameover.style.height = `${dim.h}px`;
     };
     const setBackground = props => {
         ctx.fillRect(props.x, props.y, props.w, props.h);
@@ -229,7 +238,18 @@
             this.imgW = this.sprites.damage.imgW;
             this.framesMax = this.sprites.damage.framesMax;
             if (this.health <= 0) {
-                console.log(`Enemy0 is dead!`);
+                stdout.gameover.style.visibility = `visible`;
+                stdout.gameover.innerHTML = `
+                    <h2>
+                        Game Over
+                    </h2>
+                    <h2>
+                        Player ${this === player0 ? "2" : "1"} wins!
+                    </h2>
+                    <p>
+                        Press F5 to restart
+                    </p>
+                `;
                 throw new Error(``);
             };
         };
@@ -243,9 +263,10 @@
         // };
         update() {
             timer += (new Date() * 1 - timer);
-            document.querySelector(`#player0-health`).value = parseInt(player0.health);
-            document.querySelector(`#enemy0-health`).value = parseInt(enemy0.health);
-            document.querySelector(`#timer`).innerText = end - timer;
+            const t = (end - timer) < 0 ? 0 : (end - timer);
+            stdout.player.value = parseInt(player0.health);
+            stdout.enemy.value = parseInt(enemy0.health);
+            stdout.timer.innerText = t.toString().slice(0, 2);
             this.draw();
             this.animateFrames();
 
@@ -536,7 +557,15 @@
     function requestAnimation() {
         const animate = () => {
             if (timer > end) {
-                console.log(`Time's up!`);
+                stdout.gameover.style.visibility = `visible`;
+                stdout.gameover.innerHTML = `
+                    <h2>
+                        Time's up!
+                    </h2>
+                    <p>
+                        Press F5 to restart
+                    </p>
+                `;
                 throw new Error(``);
             };
             ctx.fillStyle = `rgba(0,0,0,1)`;
@@ -564,12 +593,13 @@
 
             setTimeout(() => {
                 try {
-                    window.requestAnimationFrame(animate());
+                    // window.requestAnimationFrame(animate());
+                    animate();
                 }
                 catch(err) {
-                    // console.log(err);
+                    console.log(err);
                 };
-            }, 60_000 / 18_000);
+            }, 1);
         };
         timer = new Date() * 1;
         end = timer + settings.duration;
